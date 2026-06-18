@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Coodistral | Cooperativa de Trabajo y Desarrollo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F5FBF2;
+      color: #1E3A2F;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+    :root {
+      --verde-profundo: #1F6E43;
+      --verde-oscuro: #145C38;
+      --verde-salvia: #8ABF7C;
+      --verde-musgo: #5A8F4C;
+      --verde-claro: #DCFCE7;
+      --beige-verde: #EAF7E6;
+      --gris-verde: #2C5E3F;
+      --crema-verde: #F9FFF7;
+      --sombra: 0 20px 35px -12px rgba(31, 110, 67, 0.12);
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1.5rem 0;
+      border-bottom: 2px solid rgba(31, 110, 67, 0.2);
+    }
+    .logo h1 { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--verde-profundo); letter-spacing: -0.5px; }
+    .logo p { font-size: 0.8rem; color: var(--verde-musgo); letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-weight: 600; color: var(--gris-verde); transition: 0.2s; font-size: 1rem; }
+    .nav-links a:hover { color: var(--verde-profundo); border-bottom: 2px solid var(--verde-profundo); padding-bottom: 0.25rem; }
+
+    /* BOTONES */
+    .btn { display: inline-block; background-color: var(--verde-profundo); color: white; padding: 0.75rem 1.8rem; border-radius: 40px; font-weight: 600; text-decoration: none; transition: all 0.25s ease; border: none; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .btn:hover { background-color: var(--verde-oscuro); transform: translateY(-2px); box-shadow: 0 12px 18px -10px rgba(31, 110, 67, 0.4); }
+    .btn-outline { background: transparent; border: 2px solid var(--verde-profundo); color: var(--verde-profundo); }
+    .btn-outline:hover { background: var(--verde-profundo); color: white; }
+
+    /* HERO */
+    .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; padding: 3rem 0 4rem 0; }
+    .hero-text { flex: 1.2; }
+    .hero-text .badge { background: #E0F2E0; display: inline-block; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--verde-profundo); margin-bottom: 1.2rem; }
+    .hero-text h2 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 600; line-height: 1.2; color: #1A3A2C; margin-bottom: 1.2rem; }
+    .hero-text p { font-size: 1.05rem; color: #2C5A42; margin-bottom: 2rem; max-width: 550px; }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-img { flex: 0.9; background: linear-gradient(145deg, #E6F5E2, #D4ECCE); border-radius: 60px 30px 60px 30px; padding: 2rem; text-align: center; box-shadow: var(--sombra); }
+    .hero-img img { max-width: 200px; width: 100%; }
+    .hero-img p { margin-top: 0.8rem; font-style: italic; color: var(--verde-musgo); }
+
+    /* FUNDACION BADGE */
+    .fecha-fundacion {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--verde-profundo);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    /* SECCIONES */
+    section { padding: 4rem 0; border-bottom: 1px solid rgba(90, 143, 76, 0.15); }
+    .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; color: #1A3A2C; margin-bottom: 1rem; }
+    .section-sub { text-align: center; max-width: 700px; margin: 0 auto 3rem auto; color: #3C6B4F; font-size: 1.05rem; }
+
+    /* TABLA */
+    .table-block { margin-bottom: 3rem; }
+    .table-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--verde-profundo);
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px 50px 0 0;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 0;
+    }
+    .table-label.suplente { background: var(--verde-musgo); }
+    .table-label.fiscal { background: #2C5E3F; }
+    .table-label.vigilancia { background: #3B6B51; }
+    .table-wrapper { overflow-x: auto; border-radius: 0 16px 16px 16px; background: white; box-shadow: var(--sombra); border: 1px solid #D4F0D0; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .data-table th { background-color: var(--verde-profundo); color: white; padding: 0.9rem 1rem; font-weight: 600; text-align: left; font-size: 0.9rem; }
+    .table-label.suplente ~ .table-wrapper .data-table th { background-color: var(--verde-musgo); }
+    .data-table td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid #E2F0DC; color: #2C5A42; }
+    .data-table tr:hover { background-color: #F6FEF2; transition: 0.15s; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .table-caption { text-align: right; font-size: 0.75rem; margin-top: 0.5rem; color: #5A8F4C; }
+
+    /* GRID DOS COLUMNAS para tablas */
+    .tables-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    @media (max-width: 860px) { .tables-grid { grid-template-columns: 1fr; } }
+
+    /* REPRESENTANTE */
+    .rep-card {
+      background: white;
+      border: 2px solid var(--verde-profundo);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 500px;
+      margin: 2rem auto 0;
+      box-shadow: var(--sombra);
+    }
+    .rep-icon { font-size: 2.5rem; color: var(--verde-profundo); }
+    .rep-card h4 { font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: var(--verde-musgo); margin-bottom: 0.3rem; }
+    .rep-card p { font-size: 1.1rem; font-weight: 700; color: #1A3A2C; }
+    .rep-card span { font-size: 0.85rem; color: #5A8F4C; }
+
+    /* OBJETIVOS */
+    .objetivos-list { display: grid; gap: 1rem; max-width: 900px; margin: 0 auto; }
+    .objetivo-item {
+      background: white;
+      border-left: 4px solid var(--verde-profundo);
+      border-radius: 0 16px 16px 0;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      box-shadow: 0 4px 12px rgba(31,110,67,0.06);
+    }
+    .obj-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--verde-salvia); font-weight: 600; min-width: 2rem; }
+    .objetivo-item p { color: #2C5A42; font-size: 0.95rem; line-height: 1.5; padding-top: 0.3rem; }
+
+    /* CARDS */
+    .cards-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+    .card { background: white; border-radius: 28px; padding: 2rem 1.5rem; flex: 1 1 260px; box-shadow: 0 8px 20px rgba(0,0,0,0.03); transition: all 0.25s; border: 1px solid #D4F0D0; text-align: center; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(31,110,67,0.15); border-color: var(--verde-salvia); }
+    .card-icon { font-size: 2.8rem; color: var(--verde-profundo); margin-bottom: 1rem; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: #1F4D36; }
+    .card p { color: #446A51; line-height: 1.5; }
+
+    /* VALORES */
+    .valores-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+    .valor-item { background: #F0F9EC; border-radius: 80px; padding: 0.8rem 1.8rem; display: inline-flex; align-items: center; gap: 12px; font-weight: 600; color: var(--verde-profundo); border: 1px solid #C2E0BA; }
+    .valor-item i { font-size: 1.1rem; }
+
+    /* ESTADOS FINANCIEROS */
+    .pdf-section { text-align: center; }
+    .pdf-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: white;
+      border: 2px solid var(--verde-profundo);
+      border-radius: 20px;
+      padding: 1.5rem 2.5rem;
+      text-decoration: none;
+      color: var(--verde-profundo);
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: var(--sombra);
+      transition: all 0.25s;
+      margin-bottom: 2rem;
+    }
+    .pdf-cta:hover { background: var(--verde-profundo); color: white; transform: translateY(-2px); }
+    .pdf-cta i { font-size: 2rem; }
+    .iframe-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      border: 2px solid #D4F0D0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .iframe-wrapper iframe { display: block; width: 100%; height: 600px; border: none; }
+
+    /* CONTACTO */
+    .contact-wrapper { display: flex; flex-wrap: wrap; gap: 3rem; margin-top: 2rem; }
+    .contact-info { flex: 1; background: #FDFFFB; padding: 2rem; border-radius: 36px; box-shadow: var(--sombra); }
+    .contact-info h3 { font-size: 1.6rem; margin-bottom: 1rem; color: var(--verde-profundo); }
+    .contact-detail { display: flex; align-items: center; gap: 1rem; margin: 1.2rem 0; }
+    .contact-detail i { width: 40px; height: 40px; background: #E6F3E2; border-radius: 60%; display: inline-flex; align-items: center; justify-content: center; color: var(--verde-profundo); font-size: 1.1rem; flex-shrink: 0; }
+    .contact-form { flex: 1; background: white; padding: 2rem; border-radius: 36px; box-shadow: var(--sombra); }
+    .contact-form h3 { font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--verde-profundo); }
+    .form-group { margin-bottom: 1.2rem; }
+    input, textarea { width: 100%; padding: 0.9rem 1rem; border-radius: 28px; border: 1px solid #D4EACD; background: #FEFFFD; font-family: 'Inter', sans-serif; transition: 0.2s; font-size: 0.95rem; }
+    input:focus, textarea:focus { outline: none; border-color: var(--verde-profundo); box-shadow: 0 0 0 3px rgba(31,110,67,0.15); }
+    button[type="submit"] { background: var(--verde-profundo); border: none; width: 100%; padding: 0.9rem; font-weight: bold; font-size: 1rem; }
+
+    /* FOOTER */
+    footer { background: #1E3A2F; color: #D6F0D0; padding: 3rem 0 2rem; margin-top: 2rem; }
+    .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
+    .footer-logo h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #B8E0A8; }
+    .footer-links { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .footer-links h4 { color: #8FBF85; margin-bottom: 0.8rem; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
+    .footer-links a { color: #D6F0D0; text-decoration: none; transition: 0.2s; display: block; margin-bottom: 0.4rem; font-size: 0.9rem; }
+    .footer-links a:hover { color: #C8E7BC; }
+    .copyright { text-align: center; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #3B6B51; font-size: 0.8rem; color: #8FBF85; }
+
+    @media (max-width: 800px) {
+      .navbar { flex-direction: column; gap: 1rem; }
+      .hero-text h2 { font-size: 2.2rem; }
+      .container { padding: 0 1.2rem; }
+      .section-title { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Coodistral</h1>
+        <p>cooperativa de trabajo y desarrollo</p>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#directivos">Directivos</a></li>
+        <li><a href="#info">Financiero</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- HERO / INICIO -->
+  <div class="container" id="inicio">
+    <div class="hero">
+      <div class="hero-text">
+        <span class="badge"><i class="fas fa-seedling"></i> Cooperativa integral de distribuidores</span>
+        <h2>Transportadores de productos lácteos</h2>
+        <div class="fecha-fundacion">
+          <i class="fas fa-calendar-check"></i> Fundada el 21 de abril de 1989
+        </div>
+        <p>COODISTRAL es una cooperativa multiactiva que tiene por objeto velar por la promoción económica de sus asociados, mediante el desarrollo del espíritu de cooperación y la optimización de recursos, en la perspectiva de facilitarles los medios para su bienestar personal y familiar y la realización de sus actividades productivas.</p>
+        <div class="hero-buttons">
+          <a href="#contacto" class="btn"><i class="fas fa-leaf"></i> Asóciate</a>
+          <a href="#nosotros" class="btn btn-outline">Conoce más</a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="./img/logo_u.bmp" alt="Logo Coodistral">
+        <p>Cooperativismo • Sostenibilidad </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIOS FUNDADORES -->
+  <section id="fundadores">
+    <div class="container">
+      <div class="section-title"><i class="fas fa-users"></i> Socios Fundadores</div>
+      <div class="section-sub">Las 24 personas que en 1989 dieron vida a esta cooperativa</div>
+      <div class="table-block">
+        <div class="table-label"><i class="fas fa-star"></i> Fundadores</div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>N° Documento</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Primer Nombre</th>
+                <th>Otros Nombres</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>15.317.191</td><td>Tamayo</td><td>Zuluaga</td><td>Rubén</td><td>Hernando</td></tr>
+              <tr><td>17.167.808</td><td>Tamayo</td><td>Zuluaga</td><td>Julio</td><td>César</td></tr>
+              <tr><td>8.392.302</td><td>Hoyos</td><td>Delgado</td><td>Jorge</td><td>Alirio</td></tr>
+              <tr><td>3.596.584</td><td>Villa</td><td>Arboleda</td><td>Guillermo</td><td>—</td></tr>
+              <tr><td>8.214.052</td><td>Tobón</td><td>Lenis</td><td>Francisco</td><td>Amílcar</td></tr>
+              <tr><td>3.302.034</td><td>Toro</td><td>Naranjo</td><td>Alfonso</td><td>—</td></tr>
+              <tr><td>3.407.028</td><td>Bernal</td><td>López</td><td>Fabio</td><td>—</td></tr>
+              <tr><td>8.305.327</td><td>Arango</td><td>Aguirre</td><td>Elpidio</td><td>—</td></tr>
+              <tr><td>32.404.450</td><td>González</td><td>de Toro</td><td>Magdalena</td><td>—</td></tr>
+              <tr><td>70.975.576</td><td>Builes</td><td>Pemberthy</td><td>Rodrigo</td><td>Iván</td></tr>
+              <tr><td>71.589.260</td><td>Lenis</td><td>Pérez</td><td>Gustavo</td><td>Alfonso</td></tr>
+              <tr><td>8.403.089</td><td>Botero</td><td>Builes</td><td>Carlos</td><td>Alberto</td></tr>
+              <tr><td>19.153.057</td><td>Hoyos</td><td>Delgado</td><td>José</td><td>Antonio</td></tr>
+              <tr><td>8.298.615</td><td>Maldonado</td><td>López</td><td>William</td><td>—</td></tr>
+              <tr><td>70.976.163</td><td>Botero</td><td>Builes</td><td>Hernán</td><td>Darío</td></tr>
+              <tr><td>638.994</td><td>Gaviria</td><td>Agudelo</td><td>Pedro</td><td>—</td></tr>
+              <tr><td>19.222.232</td><td>Pérez</td><td>Restrepo</td><td>Luis</td><td>Fernando</td></tr>
+              <tr><td>8.295.193</td><td>Zuluaga</td><td>Gil</td><td>Francisco</td><td>de Jesús</td></tr>
+              <tr><td>3.320.758</td><td>Castro</td><td>López</td><td>William</td><td>—</td></tr>
+              <tr><td>3.406.673</td><td>Cadavid</td><td>Muñetón</td><td>Héctor</td><td>de Jesús</td></tr>
+              <tr><td>741.516</td><td>Pérez</td><td>Medina</td><td>José</td><td>Israel</td></tr>
+              <tr><td>22.170.001</td><td>Urrego</td><td>Vda. de Restrepo</td><td>Martha</td><td>de Jesús</td></tr>
+              <tr><td>8.223.531</td><td>Pérez</td><td>Sierra</td><td>Amado</td><td>de Jesús</td></tr>
+              <tr><td>8.231.716</td><td>Villa</td><td>Pérez</td><td>Román</td><td>Gonzalo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJETIVOS -->
+  <section id="objetivos">
+    <div class="container">
+      <div class="section-title">Nuestros objetivos</div>
+      <div class="section-sub">Los principios que guían cada acción de la cooperativa</div>
+      <div class="objetivos-list">
+        <div class="objetivo-item">
+          <span class="obj-num">1</span>
+          <p>Impulsar el desarrollo económico, cultural y social de los asociados, utilizando para ello el esfuerzo propio, la ayuda mutua, mediante la aplicación de la democracia participativa.</p>
+        </div>
+        <div class="objetivo-item">
+          <span class="obj-num">2</span>
+          <p>Producir, distribuir y comercializar bienes y servicios.</p>
+        </div>
+        <div class="objetivo-item">
+          <span class="obj-num">3</span>
+          <p>Contribuir permanentemente al mejoramiento de la seguridad social de sus asociados y de sus familias, y facilitar a estos el acceso a la recreación y al bienestar en general.</p>
+        </div>
+        <div class="objetivo-item">
+          <span class="obj-num">4</span>
+          <p>Formar e informar a los asociados en los principios y normas de la economía solidaria.</p>
+        </div>
+        <div class="objetivo-item">
+          <span class="obj-num">5</span>
+          <p>Contribuir al ejercicio y perfeccionamiento de la democracia participativa.</p>
+        </div>
+        <div class="objetivo-item">
+          <span class="obj-num">6</span>
+          <p>Desarrollar en sus asociados el sentido de pertenencia a la institución.</p>
+        </div>
+        <div class="objetivo-item">
+          <span class="obj-num">7</span>
+          <p>Estimular la participación de sus asociados y de sus familias en el diseño y ejecución de planes, programas, proyectos y actividades que redunden en su beneficio económico y social.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTIVOS 2024 -->
+  <section id="directivos">
+    <div class="container">
+      <div class="section-title">Cargos Gerenciales, Directivos y de Control 2025</div>
+      <div class="section-sub">Personas elegidas para guiar la cooperativa durante el período 2025</div>
+
+      <!-- Principales y Suplentes lado a lado -->
+      <div class="tables-grid" style="margin-bottom: 2.5rem;">
+        <div class="table-block">
+          <div class="table-label"><i class="fas fa-user-tie"></i> &nbsp;Consejo Directivo — Principales</div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr><th>Documento</th><th>Nombre</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>43.254.444</td><td>Claudia María Tamayo Bermúdez</td></tr>
+                <tr><td>71.694.536</td><td>Elkin Arturo Álvarez Molina</td></tr>
+                <tr><td>35.320.859</td><td>Falira del Socorro González Restrepo</td></tr>
+                <tr><td>8.392.302</td><td>Jorge Alirio Hoyos Delgado</td></tr>
+                <tr><td>98.493.413</td><td>José Eucaris Galvis Márquez</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-block">
+          <div class="table-label suplente"><i class="fas fa-user"></i> &nbsp;Consejo Directivo — Suplentes</div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr><th>Documento</th><th>Nombre</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>71.751.742</td><td>Wveimar Cortés López</td></tr>
+                <tr><td>3.407.028</td><td>Fabio Bernal López</td></tr>
+                <tr><td>71.606.491</td><td>Luis Fernando Lopera Aguirre</td></tr>
+                <tr><td>1.011.780.716</td><td>Duvian Danilo Álvarez Rojas</td></tr>
+                <tr><td>43.814.780</td><td>María Ludivia Orrego</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revisora Fiscal y Junta de Vigilancia -->
+      <div class="tables-grid" style="margin-bottom: 2.5rem;">
+        <div class="table-block">
+          <div class="table-label fiscal"><i class="fas fa-magnifying-glass-dollar"></i> &nbsp;Revisora Fiscal</div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr><th>Documento</th><th>Nombre</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>21.991.570</td><td>Beatriz Elena Mazo Pino</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-block">
+          <div class="table-label vigilancia"><i class="fas fa-shield-halved"></i> &nbsp;Junta de Vigilancia — Principales</div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr><th>Cédula</th><th>Nombre</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>6.496.841</td><td>Fabio Agudelo Álvarez</td></tr>
+                <tr><td>70.160.419</td><td>Óscar Humberto Garcés Jiménez</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Representante Legal -->
+      <div class="rep-card">
+        <div class="rep-icon"><i class="fas fa-scale-balanced"></i></div>
+        <div>
+          <h4>Representante Legal</h4>
+          <p>Sigifredo Molina Restrepo</p>
+          <span>C.C. 71.710.240</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTADOS FINANCIEROS -->
+  <section id="info">
+    <div class="container">
+      <div class="section-title">Estados Financieros 2025</div>
+      <div class="section-sub">Consulta los estados financieros de Coodistral para el año 2025</div>
+      <div class="pdf-section">
+        <a href="ESTADOS FINANCIEROS 2.pdf" target="_blank" class="pdf-cta">
+          <i class="fas fa-file-pdf"></i>
+          <span>Ver estados financieros completos en Google Drive</span>
+          <i class="fas fa-external-link-alt" style="font-size:1rem;"></i>
+        </a>
+        <div class="iframe-wrapper">
+          <iframe src="ESTADOS FINANCIEROS 2.pdf" title="Estados Financieros Coodistral 2024"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <div class="section-title">Contáctanos</div>
+      <div class="section-sub">Escríbenos al correo coodistrales@hotmail.com de lunes a viernes de 9AM – 5PM</div>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3><i class="fas fa-address-card"></i> Oficina Coodistral</h3>
+          <div class="contact-detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Calle 75 64a 13, Barrio Caribe, Medellín</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-phone-alt"></i>
+            <span>+57 (604) 3379991 · WhatsApp: 3005656582</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-envelope"></i>
+            <span>coodistrales@hotmail.com</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fas fa-clock"></i>
+            <span>Lunes a Viernes: 9:00 AM – 5:00 PM</span>
+          </div>
+          <hr style="margin: 1.5rem 0; border-color:#CBE5C2;">
+          <p><i class="fas fa-hands-helping"></i> ¿Quieres ser parte de nuestra cooperativa? <strong>Inscríbete como asociado</strong> y accede a beneficios exclusivos.</p>
+        </div>
+        <div class="contact-form">
+          <h3><i class="fas fa-paper-plane"></i> Envíanos un mensaje</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <input type="text" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Correo electrónico" required>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Teléfono / celular">
+            </div>
+            <div class="form-group">
+              <textarea rows="4" placeholder="Cuéntanos tu interés de cómo asociarte…"></textarea>
+            </div>
+            <button type="submit" class="btn">Enviar mensaje <i class="fas fa-arrow-right"></i></button>
+            <p style="font-size: 0.75rem; margin-top: 12px; text-align: center; color: #5A8F4C;">Respuesta en menos de 48 horas</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h3>Coodistral</h3>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem;">Cooperativa de Trabajo Asociado<br>Economía Solidaria desde 1989</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h4>Navegación</h4>
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#objetivos">Objetivos</a>
+            <a href="#directivos">Directivos</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#info">Financiero</a>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <a href="#">Términos y condiciones</a>
+            <a href="#">Política de datos</a>
+            <a href="#">Estatutos</a>
+          </div>
+          <div>
+            <h4>Redes</h4>
+            <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Coodistral Cooperativa — cooperación y compromiso. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('¡Gracias por contactar a Coodistral! Pronto recibirás respuesta de nuestro equipo.');
+        form.reset();
+      });
+    }
+  </script>
+</body>
+</html>
